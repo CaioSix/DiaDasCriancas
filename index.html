@@ -250,10 +250,47 @@
     /* Rodapé */
     .portal-footer {
       margin-top: 24px;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       color: #6c584c;
       font-weight: 600;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .portal-footer strong {
+      color: #3d312a;
+    }
+
+    .footer-git a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #2b2d42;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 6px 14px;
+      border-radius: 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      transition: all 0.2s ease;
+    }
+
+    .footer-git a:hover {
+      background: #2b2d42;
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(43, 45, 66, 0.25);
+    }
+
+    .git-icon {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
     }
 
     /* Balões Decorativos de Fundo */
@@ -359,7 +396,15 @@
 
     <!-- Rodapé -->
     <footer class="portal-footer">
-      💖 Feito com carinho para o Dia das Crianças • Funciona no Celular e no Computador!
+      <span>💖 Feito com amor por <strong>Caio Cavalcanti</strong></span>
+      <div class="footer-git">
+        <a href="https://github.com/CaioSix" target="_blank" rel="noopener noreferrer" title="Ver GitHub de Caio Cavalcanti">
+          <svg class="git-icon" viewBox="0 0 24 24">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          github.com/CaioSix
+        </a>
+      </div>
     </footer>
 
   </main>
