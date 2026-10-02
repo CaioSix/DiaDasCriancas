@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#ff85a1">
+  <title>🎈 Especial Dia das Crianças - Escolha seu Jogo! 🎈</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-pink: #ff85a1;
+      --primary-green: #38b000;
+      --card-shadow: 0 16px 36px rgba(0, 0, 0, 0.15);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    body {
+      font-family: 'Fredoka', cursive, sans-serif;
+      min-height: 100vh;
+      min-height: 100dvh;
+      background: linear-gradient(135deg, #ffd166 0%, #ff85a1 40%, #70d6ff 80%, #99d98c 100%);
+      background-size: 300% 300%;
+      animation: rainbowShift 12s ease infinite;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      overflow-x: hidden;
+      color: #33272a;
+    }
+
+    @keyframes rainbowShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Container Principal */
+    .portal-container {
+      width: 100%;
+      max-width: 960px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-radius: 32px;
+      border: 5px solid #ffffff;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+      padding: 24px 20px 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    /* Cabeçalho Festivo */
+    .portal-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .badge-festival {
+      display: inline-block;
+      background: linear-gradient(90deg, #ff477e, #f72585);
+      color: white;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 6px 18px;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(247, 37, 133, 0.35);
+      margin-bottom: 10px;
+      animation: pulseBadge 2s infinite ease-in-out;
+    }
+
+    @keyframes pulseBadge {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .portal-header h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #ff3366;
+      text-shadow: 2px 2px 0px #ffd166;
+      line-height: 1.2;
+    }
+
+    .portal-header p {
+      font-size: 1.1rem;
+      color: #5c4d56;
+      margin-top: 6px;
+      font-weight: 600;
+    }
+
+    /* Grade dos Jogos */
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      width: 100%;
+      max-width: 860px;
+    }
+
+    @media (max-width: 720px) {
+      .games-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+    }
+
+    /* Card de Jogo */
+    .game-card {
+      background: #ffffff;
+      border-radius: 24px;
+      border: 4px solid #f0e6ef;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+    }
+
+    .game-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+    }
+
+    .game-card:active {
+      transform: scale(0.97);
+    }
+
+    .game-card.card-quitanda {
+      border-color: #c7f9cc;
+    }
+    .game-card.card-quitanda:hover {
+      border-color: #57cc99;
+      box-shadow: 0 18px 36px rgba(87, 204, 153, 0.35);
+    }
+
+    .game-card.card-roupa {
+      border-color: #ffd6e0;
+    }
+    .game-card.card-roupa:hover {
+      border-color: #ff758f;
+      box-shadow: 0 18px 36px rgba(255, 117, 143, 0.35);
+    }
+
+    /* Imagem / Ilustração de Destaque */
+    .card-banner {
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .banner-quitanda {
+      background: linear-gradient(135deg, #d8f3dc, #b7e4c7, #80ed99);
+    }
+
+    .banner-roupa {
+      background: linear-gradient(135deg, #ffe5ec, #ffc2d1, #ffb3c6);
+    }
+
+    .card-banner svg {
+      width: 140px;
+      height: 140px;
+      filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.15));
+      transition: transform 0.4s ease;
+    }
+
+    .game-card:hover .card-banner svg {
+      transform: scale(1.1) rotate(4deg);
+    }
+
+    /* Corpo do Card */
+    .card-body {
+      padding: 18px 20px 22px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      text-align: center;
+    }
+
+    .card-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+      display: inline-block;
+    }
+
+    .card-quitanda .card-tag { color: #2d6a4f; }
+    .card-roupa .card-tag { color: #c9184a; }
+
+    .card-title {
+      font-size: 1.55rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .card-quitanda .card-title { color: #1b4332; }
+    .card-roupa .card-title { color: #800f2f; }
+
+    .card-desc {
+      font-size: 0.92rem;
+      color: #6c757d;
+      line-height: 1.4;
+      margin-bottom: 18px;
+      flex: 1;
+    }
+
+    /* Botão de Jogar */
+    .btn-play {
+      padding: 12px 24px;
+      border-radius: 16px;
+      font-family: inherit;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: white;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+      transition: transform 0.2s ease;
+    }
+
+    .btn-play-quitanda {
+      background: linear-gradient(90deg, #38b000, #007200);
+    }
+
+    .btn-play-roupa {
+      background: linear-gradient(90deg, #ff477e, #c9184a);
+    }
+
+    /* Rodapé */
+    .portal-footer {
+      margin-top: 24px;
+      font-size: 0.9rem;
+      color: #6c584c;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    /* Balões Decorativos de Fundo */
+    .balloon {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0.85;
+      animation: floatBalloon 6s ease-in-out infinite alternate;
+    }
+    .balloon-1 { top: 20px; left: -25px; font-size: 2.8rem; }
+    .balloon-2 { top: 40px; right: -25px; font-size: 2.8rem; animation-delay: 2s; }
+
+    @keyframes floatBalloon {
+      0% { transform: translateY(0px) rotate(-4deg); }
+      100% { transform: translateY(-16px) rotate(4deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Balões Flutuantes -->
+  <div class="balloon balloon-1">🎈</div>
+  <div class="balloon balloon-2">🎉</div>
+
+  <main class="portal-container">
+    
+    <!-- Cabeçalho -->
+    <header class="portal-header">
+      <span class="badge-festival">✨ DIA DAS CRIANÇAS ✨</span>
+      <h1>Escolha seu Jogo Favorito!</h1>
+      <p>Qual aventura divertida você quer começar agora?</p>
+      
+      <!-- Saldo de Moedas Compartilhado -->
+      <div style="margin-top: 10px;">
+        <span style="background: rgba(255, 209, 102, 0.35); border: 2px solid #ffd166; padding: 6px 16px; border-radius: 20px; font-weight: 700; color: #583101; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 6px;">
+          🪙 Suas Moedas: <span id="portal-coins">50</span>
+        </span>
+      </div>
+    </header>
+
+    <!-- Cards de Seleção -->
+    <section class="games-grid">
+      
+      <!-- JOGO 1: QUITANDA DO ABACATEIRO -->
+      <a href="Quitanda/index.html" class="game-card card-quitanda" id="card-quitanda">
+        <div class="card-banner banner-quitanda">
+          <!-- Ilustração Vetorial 2D Flat de Abacate e Frutinhas -->
+          <svg viewBox="0 0 160 160">
+            <!-- Abacate Mascote Feliz -->
+            <path d="M 80 20 C 50 20 40 60 35 95 C 30 130 50 150 80 150 C 110 150 130 130 125 95 C 120 60 110 20 80 20 Z" fill="#2d6a4f" stroke="#1b4332" stroke-width="4"/>
+            <path d="M 80 28 C 56 28 48 62 44 95 C 40 125 56 142 80 142 C 104 142 120 125 116 95 C 112 62 104 28 80 28 Z" fill="#b7e4c7"/>
+            <!-- Caroço Marrom -->
+            <circle cx="80" cy="105" r="24" fill="#6f4e37" stroke="#3d2817" stroke-width="3"/>
+            <circle cx="75" cy="100" r="6" fill="#8c6245"/>
+            <!-- Rostinho Fofo no Abacate -->
+            <circle cx="68" cy="62" r="5" fill="#1b4332"/>
+            <circle cx="66" cy="60" r="1.8" fill="#ffffff"/>
+            <circle cx="92" cy="62" r="5" fill="#1b4332"/>
+            <circle cx="90" cy="60" r="1.8" fill="#ffffff"/>
+            <circle cx="60" cy="68" r="4" fill="#ff758f" opacity="0.6"/>
+            <circle cx="100" cy="68" r="4" fill="#ff758f" opacity="0.6"/>
+            <path d="M 74 70 Q 80 78 86 70" stroke="#1b4332" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <path d="M 80 20 C 85 10 98 12 95 24 C 88 28 82 22 80 20 Z" fill="#52b788" stroke="#1b4332" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <span class="card-tag">🥑 Mercadinho & Feira</span>
+          <h2 class="card-title">Quitanda do Abacateiro</h2>
+          <p class="card-desc">Atenda clientes, pese frutas, bata vitaminas no liquidificador e ganhe moedas para reformar a quitanda ou gastar na Sonia Modas!</p>
+          <div class="btn-play btn-play-quitanda">
+            Jogar Quitanda! ▶️
+          </div>
+        </div>
+      </a>
+
+      <!-- JOGO 2: SONIA MODAS -->
+      <a href="Roupa/index.html" class="game-card card-roupa" id="card-roupa">
+        <div class="card-banner banner-roupa">
+          <!-- Ilustração Vetorial 2D Flat de Vestido e Estilo Anime -->
+          <svg viewBox="0 0 160 160">
+            <!-- Vestidinho Fofo de Princesa/Anime -->
+            <path d="M 62 45 L 50 68 L 60 72 L 62 90 L 40 140 L 120 140 L 98 90 L 100 72 L 110 68 L 98 45 Q 80 52 62 45 Z" fill="#ff4d6d" stroke="#590d22" stroke-width="4"/>
+            <path d="M 64 48 Q 80 60 96 48" stroke="#ffffff" stroke-width="4" fill="none"/>
+            <polygon points="80,56 70,50 70,62" fill="#ffd166" stroke="#b58300" stroke-width="1.5"/>
+            <polygon points="80,56 90,50 90,62" fill="#ffd166" stroke="#b58300" stroke-width="1.5"/>
+            <circle cx="80" cy="56" r="3.5" fill="#ff758f"/>
+            <path d="M 40 140 Q 50 148 60 140 Q 70 148 80 140 Q 90 148 100 140 Q 110 148 120 140" stroke="#ffffff" stroke-width="6" fill="none"/>
+            <path d="M 50 65 Q 20 40 25 75 Q 35 90 55 80" fill="rgba(255, 209, 220, 0.7)" stroke="#ff758f" stroke-width="2"/>
+            <path d="M 110 65 Q 140 40 135 75 Q 125 90 105 80" fill="rgba(255, 209, 220, 0.7)" stroke="#ff758f" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <span class="card-tag">👗 Troca de Roupas</span>
+          <h2 class="card-title">Sonia Modas</h2>
+          <p class="card-desc">Crie visuais estilosos! Use as moedinhas ganhas na Quitanda para desbloquear vestidos de gala, asas cintilantes e coroas de ouro!</p>
+          <div class="btn-play btn-play-roupa">
+            Jogar Sonia Modas! ▶️
+          </div>
+        </div>
+      </a>
+
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="portal-footer">
+      💖 Feito com carinho para o Dia das Crianças • Funciona no Celular e no Computador!
+    </footer>
+
+  </main>
+
+  <script>
+    try {
+      const raw = localStorage.getItem('dia_das_criancas_save');
+      if (raw) {
+        const data = JSON.parse(raw);
+        if (data && typeof data.coins === 'number') {
+          document.getElementById('portal-coins').textContent = data.coins;
+        }
+      }
+    } catch (e) {}
+  </script>
+
+</body>
+</html>

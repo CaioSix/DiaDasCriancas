@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#ff85a1">
+  <title>Sonia Modas - Jogo de Troca de Roupas</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="game-container">
+    
+    <!-- Cabeçalho Compacto e Responsivo -->
+    <header class="game-header">
+      <div class="header-left">
+        <a href="../index.html" class="btn-icon btn-home" title="Voltar ao Menu do Dia das Crianças" aria-label="Menu Principal">🏠</a>
+        <div class="header-title">
+          <h1>✨ Sonia Modas ✨</h1>
+          <span class="header-subtitle">Monte seu visual de arrasar!</span>
+        </div>
+      </div>
+      <div class="header-controls">
+        <div class="stat-pill" title="Suas Moedas">
+          <span class="stat-icon">🪙</span>
+          <span class="stat-val" id="stat-coins">0</span>
+        </div>
+        <a href="../Quitanda/index.html" class="btn-icon btn-quitanda-link" title="Ganhar moedas na Quitanda do Abacateiro">🥑</a>
+        <button id="btn-sound" class="btn-icon" title="Ativar/Desativar Som" aria-label="Som">🔊</button>
+        <button id="btn-camera" class="btn-icon" title="Salvar Foto do Look" aria-label="Salvar Foto">📸</button>
+        <button id="btn-random" class="btn-icon" title="Visual Aleatório" aria-label="Aleatório">🎲</button>
+        <button id="btn-reset" class="btn-icon" title="Limpar Roupas" aria-label="Resetar">🔄</button>
+      </div>
+    </header>
+
+    <!-- Área Principal de Jogo -->
+    <main class="game-main">
+      
+      <!-- PALCO DO AVATAR -->
+      <section class="stage-section" aria-label="Visualização do Personagem">
+        <div class="stage-container" id="stage">
+          
+          <!-- Camada de Fundo / Cenário -->
+          <div class="layer background-layer" id="layer-bg"></div>
+
+          <!-- Personagem em Vetor SVG Escalonável (Não perde qualidade no celular) -->
+          <svg class="layer" id="layer-base" viewBox="0 0 360 520" preserveAspectRatio="xMidYMid meet">
+            <defs>
+              <radialGradient id="blush" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#ff7b90" stop-opacity="0.6"/>
+                <stop offset="100%" stop-color="#ff7b90" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+
+            <!-- Asas e Cabelo por trás -->
+            <g id="wings-back-slot"></g>
+            <g id="hair-back-slot"></g>
+
+            <!-- Corpo Base (Pele e Rosto) -->
+            <g id="body-skin">
+              <!-- Pernas -->
+              <path d="M 152 280 L 152 460 Q 152 475 165 475 Q 175 475 175 460 L 175 280 Z" fill="#ffe0bd" stroke="#5a3d31" stroke-width="2.5"/>
+              <path d="M 185 280 L 185 460 Q 185 475 195 475 Q 208 475 208 460 L 208 280 Z" fill="#ffe0bd" stroke="#5a3d31" stroke-width="2.5"/>
+              
+              <!-- Tronco -->
+              <path d="M 148 180 Q 140 240 148 290 Q 180 300 212 290 Q 220 240 212 180 Q 180 170 148 180 Z" fill="#ffe0bd" stroke="#5a3d31" stroke-width="2.5"/>
+
+              <!-- Braço Esquerdo -->
+              <path d="M 148 185 Q 120 230 115 300 Q 115 315 125 315 Q 135 315 133 300 Q 135 240 155 195 Z" fill="#ffe0bd" stroke="#5a3d31" stroke-width="2.5"/>
+              <!-- Braço Direito -->
+              <path d="M 212 185 Q 240 230 245 300 Q 245 315 235 315 Q 225 315 227 300 Q 225 240 205 195 Z" fill="#ffe0bd" stroke="#5a3d31" stroke-width="2.5"/>
+
+              <!-- Pescoço -->
+              <rect x="168" y="150" width="24" height="35" rx="5" fill="#ffe0bd" stroke="#5a3d31" stroke-width="2.5"/>
+
+              <!-- Cabeça e Orelhas -->
+              <ellipse cx="180" cy="120" rx="42" ry="46" fill="#ffe0bd" stroke="#5a3d31" stroke-width="2.5"/>
+              <ellipse cx="136" cy="125" rx="6" ry="10" fill="#ffe0bd" stroke="#5a3d31" stroke-width="2.5"/>
+              <ellipse cx="224" cy="125" rx="6" ry="10" fill="#ffe0bd" stroke="#5a3d31" stroke-width="2.5"/>
+
+              <!-- Rosto Anime -->
+              <circle cx="156" cy="132" r="10" fill="url(#blush)"/>
+              <circle cx="204" cy="132" r="10" fill="url(#blush)"/>
+
+              <!-- Olhos -->
+              <ellipse cx="160" cy="120" rx="11" ry="14" fill="#3a2518"/>
+              <circle cx="157" cy="116" r="4.5" fill="#ffffff"/>
+              <circle cx="163" cy="125" r="2" fill="#ffffff"/>
+              <path d="M 148 110 Q 160 102 172 110" stroke="#22110c" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+              <ellipse cx="200" cy="120" rx="11" ry="14" fill="#3a2518"/>
+              <circle cx="197" cy="116" r="4.5" fill="#ffffff"/>
+              <circle cx="203" cy="125" r="2" fill="#ffffff"/>
+              <path d="M 188 110 Q 200 102 212 110" stroke="#22110c" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+              <!-- Nariz e Boca -->
+              <circle cx="180" cy="128" r="1.5" fill="#c4876b"/>
+              <path d="M 175 138 Q 180 144 185 138" stroke="#d45d6a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            </g>
+
+            <!-- SLOTS DE ROUPA DINÂMICOS -->
+            <g id="slot-socks"></g>
+            <g id="slot-bottom"></g>
+            <g id="slot-shoes"></g>
+            <g id="slot-top"></g>
+            <g id="hair-front-slot"></g>
+            <g id="slot-accessory"></g>
+            <g id="slot-held"></g>
+          </svg>
+
+          <!-- Feedback de Brilho ao Trocar de Roupa -->
+          <div class="sparkle-overlay" id="sparkle-fx"></div>
+        </div>
+      </section>
+
+      <!-- PAINEL DO GUARDA-ROUPA / ITENS -->
+      <section class="wardrobe-section" aria-label="Seleção de Roupas">
+        
+        <!-- Abas de Categorias (Rolagem horizontal suave no celular) -->
+        <div class="tabs-wrapper">
+          <nav class="category-tabs" id="category-tabs">
+            <button class="tab-btn active" data-category="hair">💇 Cabelos</button>
+            <button class="tab-btn" data-category="top">👗 Roupas & Tops</button>
+            <button class="tab-btn" data-category="bottom">👖 Saias & Calças</button>
+            <button class="tab-btn" data-category="socks">🧦 Meias</button>
+            <button class="tab-btn" data-category="shoes">👠 Sapatos</button>
+            <button class="tab-btn" data-category="accessory">🎀 Acessórios</button>
+            <button class="tab-btn" data-category="held">🧸 Na Mão</button>
+            <button class="tab-btn" data-category="wings">🧚 Asas</button>
+            <button class="tab-btn" data-category="bg">🌄 Fundo</button>
+          </nav>
+        </div>
+
+        <!-- Grade de Peças da Categoria Ativa -->
+        <div class="items-container">
+          <div class="items-grid" id="items-grid">
+            <!-- Renderizado dinamicamente pelo script.js -->
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- Notificação Flutuante / Toast (ex: "Foto salva!") -->
+    <div class="toast-message" id="toast-message"></div>
+
+  </div>
+
+  <!-- Modal de Desbloqueio de Roupas com Moedas -->
+  <div class="modal-overlay" id="modal-unlock">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2>✨ Peça Exclusiva! ✨</h2>
+        <button class="btn-close-modal" id="btn-close-unlock">✖</button>
+      </div>
+      <div class="modal-body-unlock">
+        <div class="unlock-preview" id="unlock-preview"></div>
+        <h3 id="unlock-item-name">Vestido de Gala</h3>
+        <p id="unlock-item-desc">Desbloqueie para sempre no seu guarda-roupa!</p>
+        <div class="unlock-price-tag">
+          <span>Preço:</span>
+          <strong id="unlock-price">🪙 50</strong>
+        </div>
+        <button class="btn-confirm-buy" id="btn-confirm-buy">
+          Desbloquear Peça! 💖
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Canvas oculto para tirar foto / salvar PNG do look -->
+  <canvas id="screenshot-canvas" width="720" height="1040" style="display:none;"></canvas>
+
+  <script src="script.js"></script>
+</body>
+</html>

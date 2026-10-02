@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#2d6a4f">
+  <title>🥑 Quitanda do Abacateiro - Mercadinho das Crianças</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="market-container">
+    
+    <!-- Cabeçalho da Quitanda -->
+    <header class="market-header">
+      <div class="header-left">
+        <a href="../index.html" class="btn-icon btn-home" title="Voltar ao Menu Principal" aria-label="Menu Principal">🏠</a>
+        <div class="market-brand">
+          <h1>🥑 Quitanda do Abacateiro</h1>
+          <span class="market-status">Frutas Fresquinhas do Pomar!</span>
+        </div>
+      </div>
+
+      <!-- Placar & Botões de Ação -->
+      <div class="market-stats">
+        <div class="stat-pill" title="Moedas Ganhas">
+          <span class="stat-icon">🪙</span>
+          <span class="stat-val" id="stat-coins">0</span>
+        </div>
+        <div class="stat-pill" title="Clientes Atendidos">
+          <span class="stat-icon">⭐</span>
+          <span class="stat-val" id="stat-stars">0</span>
+        </div>
+        
+        <!-- Botão Loja de Reformas da Quitanda -->
+        <button id="btn-open-shop" class="btn-shop-upgrade" title="Reformar e Melhorar a Quitanda">
+          🏪 Reformar
+        </button>
+
+        <!-- Atalho para gastar moedas na Sonia Modas -->
+        <a href="../Roupa/index.html" class="btn-icon btn-crossover" title="Ir às compras na Sonia Modas">👗</a>
+        <button id="btn-sound" class="btn-icon" title="Ativar/Desativar Som" aria-label="Som">🔊</button>
+      </div>
+    </header>
+
+    <!-- Área de Jogo Principal (Palco da Quitanda) -->
+    <main class="market-main">
+      
+      <!-- PARTE SUPERIOR: CLIENTE & BALCÃO DE ATENDIMENTO -->
+      <section class="counter-section">
+        
+        <!-- Toldo da Feira (Pode ser melhorado com upgrades) -->
+        <div class="awning-wrapper" id="awning-wrapper">
+          <div class="awning" id="awning">
+            <div class="awning-stripe s1"></div>
+            <div class="awning-stripe s2"></div>
+            <div class="awning-stripe s3"></div>
+            <div class="awning-stripe s4"></div>
+            <div class="awning-stripe s5"></div>
+            <div class="awning-stripe s6"></div>
+            <div class="awning-stripe s7"></div>
+            <div class="awning-stripe s8"></div>
+          </div>
+          <!-- Luzinhas Pisca-Pisca (Desbloqueável) -->
+          <div class="fairy-lights" id="fairy-lights">
+            <span class="light red"></span>
+            <span class="light yellow"></span>
+            <span class="light green"></span>
+            <span class="light blue"></span>
+            <span class="light purple"></span>
+            <span class="light yellow"></span>
+            <span class="light red"></span>
+            <span class="light green"></span>
+          </div>
+        </div>
+
+        <!-- Palco do Cliente e Pedido -->
+        <div class="customer-stage">
+          
+          <!-- Mascote Companheiro Cãozinho Caramelo (Desbloqueável) -->
+          <div class="mascot-wrapper" id="mascot-wrapper">
+            <svg viewBox="0 0 80 80" class="mascot-svg">
+              <!-- Cachorrinho Caramelo Amigo -->
+              <ellipse cx="40" cy="50" rx="20" ry="16" fill="#e0a96d" stroke="#6f421f" stroke-width="2"/>
+              <!-- Orelhas caídas fofas -->
+              <ellipse cx="22" cy="40" rx="6" ry="12" fill="#c4874c" stroke="#6f421f" stroke-width="1.5"/>
+              <ellipse cx="58" cy="40" rx="6" ry="12" fill="#c4874c" stroke="#6f421f" stroke-width="1.5"/>
+              <!-- Olhinhos e Focinho -->
+              <circle cx="34" cy="44" r="3" fill="#2b2d42"/>
+              <circle cx="46" cy="44" r="3" fill="#2b2d42"/>
+              <ellipse cx="40" cy="50" rx="4" ry="2.5" fill="#3a1d00"/>
+              <!-- Coleirinha vermelha com sino -->
+              <rect x="28" y="58" width="24" height="4" rx="2" fill="#e63946"/>
+              <circle cx="40" cy="62" r="3" fill="#ffd166"/>
+              <!-- Rabinho abanando -->
+              <path d="M 60 52 Q 72 45 68 36" stroke="#e0a96d" stroke-width="4" fill="none" stroke-linecap="round" class="mascot-tail"/>
+            </svg>
+            <span class="mascot-badge">Caramelo 🐶</span>
+          </div>
+
+          <!-- Cliente Atual -->
+          <div class="customer-wrapper" id="customer-wrapper">
+            <svg class="customer-svg" id="customer-svg" viewBox="0 0 140 140"></svg>
+            <div class="customer-name" id="customer-name">Gatinha Mingau</div>
+          </div>
+
+          <!-- Balão de Pedido -->
+          <div class="speech-bubble" id="speech-bubble">
+            <div class="bubble-header">
+              <span class="bubble-greeting" id="bubble-greeting">Oi! Quero comprar:</span>
+            </div>
+            <div class="order-items" id="order-items"></div>
+          </div>
+
+        </div>
+
+        <!-- Balcão com Balança Digital e Liquidificador -->
+        <div class="counter-desk">
+          
+          <!-- Balança Digital -->
+          <div class="scale-box" id="scale-box">
+            <div class="scale-plate" id="scale-plate">
+              <div class="scale-fruits-tray" id="scale-fruits-tray"></div>
+            </div>
+            <div class="scale-base">
+              <div class="scale-display">
+                <span class="scale-weight" id="scale-weight">0.00 kg</span>
+                <span class="scale-price" id="scale-price">R$ 0,00</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Liquidificador Mágico (Desbloqueável) -->
+          <div class="blender-station" id="blender-station">
+            <div class="blender-body" id="blender-body">
+              <div class="blender-jar" id="blender-jar">
+                <div class="blender-smoothie" id="blender-smoothie"></div>
+                <div class="blender-fruits-inside" id="blender-fruits-inside"></div>
+              </div>
+              <div class="blender-base">
+                <button class="btn-blend" id="btn-blend" title="Bater Vitamina!">
+                  🌀 BATER!
+                </button>
+              </div>
+            </div>
+            <div class="blender-output" id="blender-output"></div>
+          </div>
+
+          <!-- Botões de Ação do Balcão -->
+          <div class="desk-actions">
+            <button class="btn-action btn-checkout disabled" id="btn-checkout">
+              <span class="checkout-icon">💵</span>
+              <span class="checkout-text">Passar no Caixa!</span>
+            </button>
+            <button class="btn-action btn-clear" id="btn-clear" title="Limpar">
+              🗑️ Limpar
+            </button>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- PARTE INFERIOR: CAIXOTES DE FRUTAS -->
+      <section class="produce-section">
+        <div class="section-title">
+          <span>🧺 Toque nas frutas para colocar na balança ou liquidificador:</span>
+        </div>
+
+        <div class="produce-grid" id="produce-grid"></div>
+      </section>
+
+    </main>
+
+    <!-- MODAL: LOJA DE REFORMAS E UPGRADES DA QUITANDA -->
+    <div class="modal-overlay" id="modal-shop">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h2>🏪 Loja de Reformas da Quitanda</h2>
+          <button class="btn-close-modal" id="btn-close-shop">✖</button>
+        </div>
+        <p class="modal-sub">Use suas moedinhas ganhas para deixar a feirinha incrível!</p>
+        
+        <div class="upgrades-list" id="upgrades-list">
+          <!-- Renderizado dinamicamente pelo script.js -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Efeito de Confetes e Moedinhas -->
+    <div class="toast-alert" id="toast-alert"></div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

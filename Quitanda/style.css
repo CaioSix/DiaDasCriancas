@@ -1,0 +1,938 @@
+/* ========================================================
+   RESET & VARIÁVEIS DA QUITANDA
+   ======================================================== */
+:root {
+  --market-green: #2d6a4f;
+  --market-light-green: #52b788;
+  --market-cream: #fbf7ee;
+  --wood-brown: #a06535;
+  --wood-dark: #6f421f;
+  --wood-light: #d4a373;
+  --gold-coin: #ffd166;
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --radius-sm: 10px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Fredoka', cursive, sans-serif;
+  background: linear-gradient(135deg, #d8f3dc 0%, #b7e4c7 40%, #95d5b2 100%);
+  color: #2b2d42;
+  touch-action: manipulation;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ========================================================
+   CONTAINER DO JOGO
+   ======================================================== */
+.market-container {
+  width: 100%;
+  height: 100%;
+  max-width: 980px;
+  max-height: 840px;
+  background: var(--market-cream);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 16px 48px rgba(45, 106, 79, 0.25);
+  overflow: hidden;
+  position: relative;
+}
+
+@media (min-width: 769px) {
+  .market-container {
+    height: 94vh;
+    border-radius: var(--radius-lg);
+    border: 4px solid #fff;
+  }
+}
+
+/* ========================================================
+   CABEÇALHO
+   ======================================================== */
+.market-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 14px;
+  background: linear-gradient(90deg, #2d6a4f, #40916c);
+  color: white;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-icon {
+  background: rgba(255, 255, 255, 0.92);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.15s ease;
+  text-decoration: none;
+}
+
+.btn-icon:active {
+  transform: scale(0.9);
+}
+
+.btn-crossover {
+  background: #ff758f;
+  color: white;
+}
+
+.btn-shop-upgrade {
+  background: linear-gradient(90deg, #ffd166, #ffb703);
+  color: #3d2800;
+  border: 2px solid #fff;
+  padding: 5px 12px;
+  border-radius: 18px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.82rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(255, 183, 3, 0.4);
+  transition: transform 0.15s ease;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.btn-shop-upgrade:active {
+  transform: scale(0.92);
+}
+
+.market-brand h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.1;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.market-status {
+  font-size: 0.72rem;
+  opacity: 0.92;
+  display: block;
+}
+
+.market-stats {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.stat-pill {
+  background: rgba(0, 0, 0, 0.25);
+  padding: 4px 10px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ========================================================
+   ÁREA PRINCIPAL
+   ======================================================== */
+.market-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* ========================================================
+   TOLDO & LUZINHAS (UPGRADES)
+   ======================================================== */
+.awning-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.awning {
+  display: flex;
+  height: 20px;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+  position: relative;
+  z-index: 5;
+}
+
+.awning-stripe {
+  flex: 1;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+/* Tema Padrão: Verde e Branco */
+.awning .s1, .awning .s3, .awning .s5, .awning .s7 { background: #2d6a4f; }
+.awning .s2, .awning .s4, .awning .s6, .awning .s8 { background: #f8f9fa; }
+
+/* Toldo de Melancia */
+.awning-watermelon .s1, .awning-watermelon .s3, .awning-watermelon .s5, .awning-watermelon .s7 { background: #e63946; }
+.awning-watermelon .s2, .awning-watermelon .s4, .awning-watermelon .s6, .awning-watermelon .s8 { background: #52b788; }
+
+/* Toldo Dourado Real */
+.awning-golden .s1, .awning-golden .s3, .awning-golden .s5, .awning-golden .s7 { background: #ffd166; }
+.awning-golden .s2, .awning-golden .s4, .awning-golden .s6, .awning-golden .s8 { background: #fff3b0; }
+
+/* Luzinhas Pisca-Pisca */
+.fairy-lights {
+  position: absolute;
+  top: 16px;
+  left: 0;
+  right: 0;
+  display: none;
+  justify-content: space-around;
+  z-index: 8;
+  pointer-events: none;
+}
+
+.fairy-lights.active {
+  display: flex;
+}
+
+.light {
+  width: 10px;
+  height: 14px;
+  border-radius: 50% 50% 40% 40%;
+  animation: twinkle 1s infinite alternate ease-in-out;
+}
+.light.red { background: #ff4d6d; box-shadow: 0 0 8px #ff4d6d; }
+.light.yellow { background: #ffd166; box-shadow: 0 0 8px #ffd166; animation-delay: 0.2s; }
+.light.green { background: #52b788; box-shadow: 0 0 8px #52b788; animation-delay: 0.4s; }
+.light.blue { background: #48cae4; box-shadow: 0 0 8px #48cae4; animation-delay: 0.6s; }
+.light.purple { background: #b5179e; box-shadow: 0 0 8px #b5179e; animation-delay: 0.8s; }
+
+@keyframes twinkle {
+  0% { opacity: 0.4; transform: scale(0.85); }
+  100% { opacity: 1; transform: scale(1.15); }
+}
+
+/* ========================================================
+   BALCÃO & CLIENTE
+   ======================================================== */
+.counter-section {
+  display: flex;
+  flex-direction: column;
+  background: #f4ecdc;
+  border-bottom: 4px solid var(--wood-brown);
+  position: relative;
+  flex-shrink: 0;
+  padding-bottom: 6px;
+}
+
+.customer-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px 4px;
+  gap: 12px;
+  min-height: 110px;
+  position: relative;
+}
+
+/* Mascote Companheiro */
+.mascot-wrapper {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  left: 12px;
+  bottom: 0px;
+  z-index: 4;
+}
+
+.mascot-wrapper.active {
+  display: flex;
+}
+
+.mascot-svg {
+  width: 58px;
+  height: 58px;
+}
+
+.mascot-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  background: #fff;
+  border: 1px solid #c4874c;
+  color: #6f421f;
+  padding: 1px 6px;
+  border-radius: 8px;
+  margin-top: -6px;
+}
+
+.mascot-tail {
+  transform-origin: 60px 52px;
+  animation: wagTail 0.4s infinite alternate ease-in-out;
+}
+
+@keyframes wagTail {
+  0% { transform: rotate(-15deg); }
+  100% { transform: rotate(15deg); }
+}
+
+/* Cliente */
+.customer-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  animation: customerBounce 3s infinite ease-in-out;
+}
+
+@keyframes customerBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.customer-svg {
+  width: 85px;
+  height: 85px;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.15));
+}
+
+.customer-name {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--wood-dark);
+  background: #fff;
+  padding: 2px 8px;
+  border-radius: 10px;
+  border: 1.5px solid var(--wood-light);
+  margin-top: -4px;
+}
+
+/* Balão de Pedido */
+.speech-bubble {
+  background: #ffffff;
+  border-radius: 18px;
+  border: 3px solid #52b788;
+  padding: 8px 12px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+  position: relative;
+  max-width: 320px;
+  flex: 1;
+}
+
+.speech-bubble::before {
+  content: '';
+  position: absolute;
+  left: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 12px solid #52b788;
+}
+
+.bubble-greeting {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--market-green);
+}
+
+.order-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.order-tag {
+  background: #edf6f9;
+  border: 1.5px solid #b7e4c7;
+  border-radius: 12px;
+  padding: 3px 8px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #1b4332;
+  transition: all 0.2s ease;
+}
+
+.order-tag.completed {
+  background: #d8f3dc;
+  border-color: #52b788;
+  color: #2d6a4f;
+  text-decoration: line-through;
+  opacity: 0.75;
+}
+
+.order-tag-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* ========================================================
+   BALCÃO DA QUITANDA: BALANÇA E LIQUIDIFICADOR
+   ======================================================== */
+.counter-desk {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 14px;
+  gap: 10px;
+}
+
+/* Balança */
+.scale-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.scale-plate {
+  width: 130px;
+  height: 38px;
+  background: #e9ecef;
+  border: 2px solid #adb5bd;
+  border-radius: 50% / 12px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: visible;
+}
+
+/* Balança de Ouro Maciço (Upgrade) */
+.scale-box.scale-golden .scale-plate {
+  background: linear-gradient(180deg, #fff3b0, #ffd166);
+  border-color: #e09f3e;
+  box-shadow: 0 0 12px rgba(255, 209, 102, 0.6);
+}
+
+.scale-fruits-tray {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  position: absolute;
+  bottom: 6px;
+}
+
+.scale-fruit-mini {
+  width: 22px;
+  height: 22px;
+  animation: fruitDrop 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes fruitDrop {
+  0% { transform: translateY(-16px) scale(0.6); opacity: 0; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.scale-base {
+  background: #343a40;
+  padding: 2px 8px;
+  border-radius: 8px;
+  border: 2px solid #212529;
+  margin-top: 2px;
+}
+
+.scale-display {
+  display: flex;
+  gap: 6px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.scale-weight { color: #70d6ff; }
+.scale-price { color: #ffd166; }
+
+/* LIQUIDIFICADOR MÁGICO (DESBLOQUEÁVEL) */
+.blender-station {
+  display: none;
+  align-items: center;
+  gap: 8px;
+}
+
+.blender-station.active {
+  display: flex;
+}
+
+.blender-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.blender-jar {
+  width: 44px;
+  height: 52px;
+  background: rgba(220, 245, 255, 0.65);
+  border: 2px solid #70d6ff;
+  border-radius: 4px 4px 8px 8px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);
+}
+
+.blender-smoothie {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 0%;
+  background: linear-gradient(180deg, #99d98c, #52b788);
+  transition: height 0.3s ease;
+}
+
+.blender-smoothie.filled {
+  height: 75%;
+}
+
+.blender-fruits-inside {
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+}
+
+.blender-base {
+  background: #ff70a6;
+  border: 2px solid #c9184a;
+  border-radius: 6px;
+  padding: 2px 6px;
+  margin-top: -2px;
+}
+
+.btn-blend {
+  background: #fff;
+  border: 1px solid #c9184a;
+  border-radius: 4px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.65rem;
+  color: #c9184a;
+  cursor: pointer;
+  padding: 1px 4px;
+}
+
+.blender-body.shaking {
+  animation: shakeBlender 0.1s infinite alternate;
+}
+
+@keyframes shakeBlender {
+  0% { transform: translate(-2px, 1px) rotate(-1deg); }
+  100% { transform: translate(2px, -1px) rotate(1deg); }
+}
+
+.blender-output {
+  display: flex;
+  align-items: center;
+}
+
+.blender-cup {
+  width: 32px;
+  height: 38px;
+  background: #ffe5ec;
+  border: 2px solid #ff758f;
+  border-radius: 4px 4px 10px 10px;
+  position: relative;
+  animation: fruitDrop 0.25s ease;
+}
+
+.blender-cup::after {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 12px;
+  width: 4px;
+  height: 14px;
+  background: #ff4d6d;
+  border-radius: 2px;
+}
+
+/* Ações do Balcão */
+.desk-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-action {
+  border: none;
+  border-radius: 14px;
+  font-family: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn-action:active { transform: scale(0.92); }
+
+.btn-checkout {
+  background: linear-gradient(90deg, #38b000, #007200);
+  color: white;
+  padding: 9px 16px;
+  font-size: 0.92rem;
+  box-shadow: 0 4px 12px rgba(56, 176, 0, 0.35);
+}
+
+.btn-checkout.disabled {
+  background: #ced4da;
+  color: #6c757d;
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.btn-checkout:not(.disabled) {
+  animation: pulseButton 1.5s infinite;
+}
+
+@keyframes pulseButton {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.btn-clear {
+  background: #fff;
+  border: 2px solid #ced4da;
+  color: #6c757d;
+  padding: 8px 10px;
+  font-size: 0.8rem;
+}
+
+/* ========================================================
+   SEÇÃO DE CAIXOTES
+   ======================================================== */
+.produce-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 12px 12px;
+  overflow: hidden;
+  background: #fdfaf4;
+}
+
+.section-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--wood-brown);
+  margin-bottom: 6px;
+}
+
+.produce-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  overflow-y: auto;
+  padding: 2px;
+}
+
+@media (max-width: 700px) {
+  .produce-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+  }
+}
+
+.crate-card {
+  background: #deb887;
+  border: 3px solid #8b5a2b;
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  overflow: hidden;
+}
+
+.crate-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 14px,
+    rgba(139, 90, 43, 0.18) 14px,
+    rgba(139, 90, 43, 0.18) 16px
+  );
+  pointer-events: none;
+}
+
+.crate-card:active { transform: scale(0.92); }
+
+@media (hover: hover) {
+  .crate-card:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 6px 12px rgba(139, 90, 43, 0.3);
+  }
+}
+
+.crate-card.highlight {
+  border-color: #38b000;
+  box-shadow: 0 0 0 2px #38b000, 0 6px 14px rgba(56, 176, 0, 0.3);
+}
+
+.crate-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+}
+
+.crate-icon svg {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.crate-name {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #3a1d00;
+  margin-top: 2px;
+  z-index: 2;
+  text-align: center;
+}
+
+.crate-price {
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: #fff;
+  background: #2d6a4f;
+  padding: 1px 6px;
+  border-radius: 8px;
+  margin-top: 2px;
+  z-index: 2;
+}
+
+/* ========================================================
+   MODAL DE REFORMAS (UPGRADES SHOP)
+   ======================================================== */
+.modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-card {
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  border: 4px solid #52b788;
+  max-width: 520px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  padding: 18px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+  animation: popModal 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popModal {
+  0% { transform: scale(0.85); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-header h2 {
+  font-size: 1.25rem;
+  color: #2d6a4f;
+}
+
+.btn-close-modal {
+  background: #ffe3e3;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-weight: 700;
+  color: #c9184a;
+  cursor: pointer;
+}
+
+.modal-sub {
+  font-size: 0.82rem;
+  color: #6c757d;
+  margin-top: 2px;
+  margin-bottom: 14px;
+}
+
+.upgrades-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+  max-height: 60vh;
+  padding-right: 4px;
+}
+
+.upgrade-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f8f9fa;
+  border: 2px solid #e9ecef;
+  border-radius: 14px;
+  padding: 10px 12px;
+  gap: 10px;
+}
+
+.upgrade-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.upgrade-icon {
+  font-size: 1.8rem;
+}
+
+.upgrade-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #2b2d42;
+}
+
+.upgrade-desc {
+  font-size: 0.72rem;
+  color: #6c757d;
+  line-height: 1.2;
+}
+
+.btn-buy-upgrade {
+  background: linear-gradient(90deg, #ffd166, #ffb703);
+  border: none;
+  padding: 8px 14px;
+  border-radius: 14px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #3d2800;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 3px 8px rgba(255, 183, 3, 0.3);
+}
+
+.btn-buy-upgrade.purchased {
+  background: #d8f3dc;
+  color: #2d6a4f;
+  cursor: default;
+  box-shadow: none;
+}
+
+/* ========================================================
+   TOAST
+   ======================================================== */
+.toast-alert {
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-20px);
+  background: rgba(33, 37, 41, 0.92);
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 2000;
+}
+
+.toast-alert.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+/* ========================================================
+   RESPONSIVIDADE: CELULAR
+   ======================================================== */
+@media (max-width: 600px) {
+  .market-container {
+    height: 100dvh;
+    border-radius: 0;
+    border: none;
+  }
+  .market-header { padding: 6px 10px; }
+  .market-brand h1 { font-size: 1.05rem; }
+  .market-status { display: none; }
+  .btn-shop-upgrade { padding: 4px 8px; font-size: 0.72rem; }
+
+  .customer-stage { padding: 4px 8px; gap: 8px; }
+  .customer-svg { width: 64px; height: 64px; }
+  .mascot-svg { width: 44px; height: 44px; }
+  .speech-bubble { padding: 6px 8px; }
+  .bubble-greeting { font-size: 0.72rem; }
+
+  .counter-desk { padding: 2px 8px; }
+  .scale-plate { width: 100px; height: 32px; }
+  .btn-checkout { padding: 7px 10px; font-size: 0.8rem; }
+  .produce-grid { grid-template-columns: repeat(3, 1fr); gap: 5px; }
+  .crate-icon { width: 36px; height: 36px; }
+  .crate-name { font-size: 0.62rem; }
+}
